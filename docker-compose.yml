@@ -3,7 +3,7 @@ version: '3.1'
 services:
 
  wordpress:
-   image: dagman62/apache-wordpress 
+   image: apache-wordpress 
    restart: always
    container_name: wordpress
    links:
@@ -16,6 +16,8 @@ services:
      WORDPRESS_DB_PASSWORD: "wordpress"
      WORDPRESS_DB_HOST: mysql 
      MYSQL_PORT_3306_TCP: 3306
+   volumes:
+     - apache_log_volume:/usr/local/apache/logs
 
  mysql:
    image: mysql
@@ -27,4 +29,9 @@ services:
      MYSQL_USER: wordpress
      MYSQL_PASSWORD: "wordpress"
    volumes:
-     - /var/lib/mysql/data:/var/lib/mysql
+     - mysql_data_volume:/var/lib/mysql
+
+
+volumes:
+  apache_log_volume:
+  mysql_data_volume:
