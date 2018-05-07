@@ -20,7 +20,7 @@ services:
      - apache_log_volume:/usr/local/apache/logs
 
  mysql:
-   image: mysql
+   image: dagman62/mysql:5.7
    restart: always
    container_name: mysql
    environment:
@@ -28,6 +28,9 @@ services:
      MYSQL_DATABASE: wordpress
      MYSQL_USER: wordpress
      MYSQL_PASSWORD: "wordpress"
+   volumes:
+     - mysqldata:/var/lib/mysql
 
 volumes:
   apache_log_volume:
+  mysqldata:
