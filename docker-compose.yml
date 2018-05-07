@@ -3,9 +3,7 @@ version: '3.1'
 services:
 
  wordpress:
-   image: dagman62/apache-wordpress 
-   networks:
-     - apache_mysql 
+   image: apache-wordpress 
    restart: always
    container_name: wordpress
    links:
@@ -23,8 +21,6 @@ services:
 
  mysql:
    image: mysql
-   networks:
-     - apache_mysql
    restart: always
    container_name: mysql
    environment:
@@ -32,11 +28,6 @@ services:
      MYSQL_DATABASE: wordpress
      MYSQL_USER: wordpress
      MYSQL_PASSWORD: "wordpress"
-   volumes:
-     - mysql_data_volume:/var/lib/mysql
 
-networks:
-  apache_mysql:
 volumes:
   apache_log_volume:
-  mysql_data_volume:
